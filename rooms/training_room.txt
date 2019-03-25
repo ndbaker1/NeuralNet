@@ -1,0 +1,13 @@
+160 650
+xxxxxxxxxxxxxxxx
+x         1    x
+x         1    x
+x         1    x
+x22222xxxx     x
+x       3x     x
+x       3x     x
+xxxxxxxxxx     x
+x         0    x
+x         0    x
+x         0    x
+xxxxxxxxxxxxxxxx
