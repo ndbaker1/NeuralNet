@@ -6,8 +6,8 @@ import java.util.*;
 import java.io.Serializable;
 
 		////////////////////////////////////////////////////////////////////////////
-		////						NEURAL-NETWORK								////
-		////	Constructed of a 3D Array of doubles used as neuron weights		////
+		////						NEURAL-NETWORK		////
+		////	Constructed of a 3D Array of doubles used as neuron weights	////
 		////////////////////////////////////////////////////////////////////////////
 		
 public class NeuralNetwork implements Serializable {
@@ -91,11 +91,11 @@ public class NeuralNetwork implements Serializable {
 //								          /--             /                  \                    \-+----+                  
 //								       /--               /                    \                   /-|    |\                
 //								+----+                  /                       \             /---  +----+  \              
-//			THESE				|    |-\               /                          \        /---    /          \             
-//			TWO 				+----+  \-----       /                             \ /----       /             \           
+//			THESE					|    |-\               /                          \        /---    /          \             
+//			TWO 					+----+  \-----       /                             \ /----       /             \           
 //			ARE					      \       \---- /                            /--\          /                 \          
-//			INPUTS				        \          \-----                    /---    \        /                   \        
-//			(run method)		         \        /      \-----          /---          \     /                      \      
+//			INPUTS					        \          \-----                    /---    \        /                   \        
+//			(run method)		      			  \        /      \-----          /---          \     /                      \      
 //								           \    /              \ +----+ /               \  /                          +----+
 //								            \  /                 |    |                   \                           |    |
 //								              \                / +----+ \               /  \                          +----+
@@ -114,152 +114,3 @@ public class NeuralNetwork implements Serializable {
 //								                       \---      +----+      /----                                          
 //								                           \---  |    |  /---                                               
 //								                               \-+----+--        
-
-
-/*
-	INEFFICIENT CLASS BASED NEURAL-NETWORK
-public class NeuralNetwork implements Serializable {
-	
-	private NeuralLayer[] neural_layers;
-	
-    public NeuralNetwork(int inputs, int[] neuron_layers) {
-    	neural_layers = new NeuralLayer[neuron_layers.length];
-    	neural_layers[0] = new NeuralLayer(inputs, neuron_layers[0]);
-    	for(int i = 1; i < neural_layers.length; i++){
-    		neural_layers[i] = new NeuralLayer(neuron_layers[i-1], neuron_layers[i]);
-    	}
-    }
-    
-    public NeuralNetwork mutatedNetwork(double probability, double variance){
-    	int[] n_layers = new int[neural_layers.length];
-    	for(int i = 0; i < n_layers.length; i++){
-    		n_layers[i] = neural_layers[i].getNeurons().length;
-    	}
-    	NeuralNetwork mut = new NeuralNetwork(	neural_layers[0].getNeurons()[0].getNumInputs(), n_layers );
-    	
-    	for(int i = 0; i < mut.neural_layers.length; i++){
-    		for(int j = 0; j < mut.neural_layers[i].getNeurons().length; j++){
-    			mut.neural_layers[i].getNeurons()[j] = neural_layers[i].getNeurons()[j].clone();
-    			if(Math.random() < probability){
-    				mut.neural_layers[i].getNeurons()[j].mutate(variance);	
-    			}
-    		} 
-    	}
-    	return mut;
-    }
-    
-    public double[] run(double[] inputs){
-    	loadStimuli(inputs);
-    	passData();
-    	return getOutputs(neural_layers.length-1);
-    }    
-    	
-    public void loadStimuli(double[] inputs){
-    	for(Neuron neuron: neural_layers[0].getNeurons()){
-    		neuron.calc(inputs);
-    	}
-    }
-    public void passData(){
-    	for(int i = 1; i < neural_layers.length; i++){
-			neural_layers[i].takeInputs(neural_layers[i-1]);
-    	}
-    }
-    public double[] getOutputs(int layer){
-    	double[] outs = new double[neural_layers[layer].getNeurons().length];
-    	for(int i = 0; i < outs.length; i++){
-    		outs[i] = neural_layers[layer].getNeurons()[i].getValue();
-    	}
-		reset();
-    	return outs;
-    }
-    
-    public void reset(){
-    	for(NeuralLayer l : neural_layers){
-    		for(Neuron n: l.getNeurons()){
-    			n.reset();
-    		}
-    	}
-    }
-}
-
-class NeuralLayer implements Serializable{
-	private Neuron[] neurons;
-	public NeuralLayer(int inputs, int num_neurons){
-		neurons = new Neuron[num_neurons];
-		for(int i = 0; i < num_neurons; i++){
-			neurons[i] = new Neuron(inputs);
-		}
-	}
-	
-	public void takeInputs(NeuralLayer nlayer){
-		for(Neuron n: neurons){
-			n.calc(nlayer);
-		}
-	}
-	
-	public Neuron[] getNeurons(){
-		return neurons;
-	}
-}
-
-class Neuron implements Serializable{
-	private double[] weights;
-	private double value;
-	private double bias;
-	public Neuron(int inputs){
-		bias = Math.random()*8-4;
-		value = 0;
-		weights = new double[inputs];
-		for(int i = 0; i < weights.length; i++){
-			weights[i] = Math.random()*8-4;//random weights
-		}
-	}
-	
-	public void calc(double[] inputs){
-		for(int i = 0; i < weights.length; i++){
-			value += inputs[i]*weights[i];
-		}
-		value = sigmoid(value+bias);
-	}
-	
-	public void calc(NeuralLayer inputs){
-		for(int i = 0; i < weights.length; i++){
-			value += inputs.getNeurons()[i].getValue()*weights[i];
-		}
-		value = sigmoid(value+bias);
-	}
-	
-	public double getValue(){
-		return value;
-	}
-	
-	public int getNumInputs(){
-		return weights.length;
-	}
-	
-	public void reset(){
-		value = 0;
-	}
-	
-	public static double sigmoid(double x){
-		return 1 / (1 + Math.exp(-x));
-    }
-    
-    public void mutate(double v){
-    	bias += Math.random()*v-v/2.0;
-		for(int i = 0; i < weights.length; i++){
-			weights[i] += Math.random()*v-v/2.0;
-		}
-    }
-    
-    public Neuron clone(){
-    	Neuron n = new Neuron(weights.length);
-    	n.bias = this.bias;
-    	for(int i = 0; i < weights.length; i++){
-    		n.weights[i] = new Double(weights[i]);
-    	}
-    	return n;
-    }
-}
-*/
-
