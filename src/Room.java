@@ -10,8 +10,8 @@ public class Room extends Canvas implements KeyListener, Runnable{
 	////////////////////////////
 	/////// DIRECTORIES ////////
 	////////////////////////////
-	/*											*	
-	*	Rooms should be located in "rooms"		*
+	/*						*	
+	*	Rooms should be located in "rooms"	*
 	*	Neural-Nets should be in "neuralnets"	/*	
 	
 	
@@ -293,7 +293,7 @@ public class Room extends Canvas implements KeyListener, Runnable{
 			max_angle = Math.max(max_angle, current_angle);
 		if ((max_angle - min_angle > Math.PI ? ((dir < (Math.PI*2) && dir >= max_angle)||(dir >= 0 && dir <= min_angle)):dir <= max_angle && dir >= min_angle)){
 		
-//			System.out.printf ("BODY DIR: [%.2f°] is between [%.2f° and %.2f°] of wall id: %s with distance ==> ",dir,min_angle,max_angle,w.toString());
+//			System.out.printf ("BODY DIR: [%.2fÂ°] is between [%.2fÂ° and %.2fÂ°] of wall id: %s with distance ==> ",dir,min_angle,max_angle,w.toString());
 			double dx = clamp(p.getX()+p.radius,w.x,w.x+w.width) - (p.getX()+p.radius);
 			double dy = -(clamp(p.getY()+p.radius,w.y,w.y+w.height) - (p.getY()+p.radius));
 			double dist = 0;
@@ -557,7 +557,7 @@ public class Room extends Canvas implements KeyListener, Runnable{
 	}
 	
 	/////////////////////////////
-	///////// Game Loop /////////
+	///////// Main Loop /////////
 	/////////////////////////////
 	public void run(){
 	 	long starttime = 0;
