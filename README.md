@@ -1,6 +1,10 @@
 # NeuralNet
-Forward Feeding Neural Network Model in Java
+**Forward Feeding Neural Network** Model in Java <br>
+Constructed using a 3D Array of doubles to simulate the effects of a Neuron firing in a Neural Network.
 
-Constructed by a 3D Array of doubles to simulate the weighted value of a Neuron firing in a Nueral-Network.
+---
+Operations on the Neural Network include basic **genetic algorithms** which cover:
+- Random Mutation of Neuron weights
+- Reproductive success as dictated by a fitness function
 
-Graphical Testing Environment with Simple Motion coded using Java Foundational Classes.
+Networks are produced in mass and assigned to controllable bodies in my simplistic physics-driven simulation.<br> This allows me to test the Network's ability to evolve and keep track of the number of generations passed.
