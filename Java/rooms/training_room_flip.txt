@@ -1,0 +1,13 @@
+840 650
+xxxxxxxxxxxxxxxx
+x    1         x
+x    1         x
+x    1         x
+x     xxxx22222x
+x     x3       x
+x     x3       x
+x     xxxxxxxxxx
+x    0         x
+x    0         x
+x    0         x
+xxxxxxxxxxxxxxxx
