@@ -20,4 +20,4 @@ Additional Functionality:
 Consructed using a 3D List of floats to simulate Neurons
 
 The Network is trained using known inputs and outputs, which are fed through a **backpropagation algorithm**.<br>
-An intuitive and non-calculus based approach is described in [BACKPROPAGATION.pdf](python/BACKPROPAGATION.pdf) which I used for reference
+An intuitive and non-calculus based approach is described in [BACKPROPAGATION.pdf](Python/BACKPROPAGATION.pdf) which I used for reference
