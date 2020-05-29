@@ -1,10 +1,17 @@
-# NeuralNet
-**Forward Feeding Neural Network** Model in Java <br>
-Constructed using a 3D Array of doubles to simulate the effects of a Neuron firing in a Neural Network.
+# NeuralNets
+Forward Feeding Neural Network Models in Java and Python
+## Java
+Constructed using a 3D Array of doubles to simulate Neurons
 
----
-Operations on the Neural Network include basic **genetic algorithms** which cover:
-- Random Mutation of Neuron weights
-- Reproductive success as dictated by a fitness function
+The network can learn/adapt through **genetic algorithms** which cover:
+```
+- random mutation of neuron weights
+- reproductive success as dictated by a fitness function
+```
+Networks are produced en mass and are given a controllable body in my simple physics-like simulation.<br>
+This allows me to test the Network's ability to navigate an environment and also keep track of information such as number of generations passed.
+## Python
+Consructed using a 3D List of floats to simulate Neurons
 
-Networks are produced in mass and assigned to controllable bodies in my simplistic physics-driven simulation.<br> This allows me to test the Network's ability to evolve and keep track of the number of generations passed.
+The Network is trained using known inputs and outputs, which are fed through a **backpropagation algorithm**.<br>
+An intuitive and non-calculus based approach is described in [BACKPROPAGATION.pdf](python/BACKPROPAGATION.pdf) which I used for reference
