@@ -52,8 +52,8 @@ public class Room extends Canvas implements KeyListener, Runnable{
 		setFont(new Font("Verdana", Font.ITALIC, 11));
 		checkpoint_map = new TreeMap<Integer, ArrayList<Wall>>();
 		
-		loadMap(new File("../rooms/room3.txt"));
-		AIs = new AI_container(NUMBER_OF_AI, loadNeuralNetwork(new File("../neuralnets")));
+		loadMap(new File("./rooms/room3.txt"));
+		AIs = new AI_container(NUMBER_OF_AI, loadNeuralNetwork(new File("./neuralnets")));
 		
 		addMouseListener(new MouseAdapter(){
 			public void mousePressed(MouseEvent e) {
@@ -98,7 +98,7 @@ public class Room extends Canvas implements KeyListener, Runnable{
 	/* SAVES THE MOST FIT AI NEURAL NETWORK TO A .SER */
 	private void saveNeuralNetwork(){
 		try (
-		  OutputStream file = new FileOutputStream("../neuralnets/"+JOptionPane.showInputDialog(null,"NEURAL-NET FILENAME:")+".ser");
+		  OutputStream file = new FileOutputStream("./neuralnets/"+JOptionPane.showInputDialog(null,"NEURAL-NET FILENAME:")+".ser");
 		  OutputStream buffer = new BufferedOutputStream(file);
 		  ObjectOutput output = new ObjectOutputStream(buffer);
 		){
@@ -224,7 +224,7 @@ public class Room extends Canvas implements KeyListener, Runnable{
 						default: break;
 					}break;	
 				case 1: 
-					File[] map_files = new File("../rooms").listFiles();
+					File[] map_files = new File("./rooms").listFiles();
 					String[] map_names = new String[map_files.length];
 					for(int i = 0; i < map_files.length; i++){		map_names[i] = map_files[i].getName().substring(0,map_files[i].getName().lastIndexOf("."));		}
 					loadMap(map_files[JOptionPane.showOptionDialog(null, "< ROOM CHOOSER >","Click a button", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, map_names, map_names[0])]);
